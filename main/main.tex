@@ -1,0 +1,68 @@
+\documentclass[11pt, a4paper]{article}
+
+% Change your details in utility.tex
+\input{../utilities/utility.tex}
+
+% Packages
+\usepackage{fancyhdr}
+
+% Current Subject
+\newcommand{\currentsubject}{example}
+
+\begin{document}
+
+    \begin{titlepage}
+    \centering
+    \vspace*{\fill}
+
+    % University Name
+    \textsc{\LARGE \universityname}\\[1cm]
+    
+    % Subject Info
+    \Large \subjectcode{\currentsubject}\\[0.5cm]
+    \large \subjectname{\currentsubject}\\[0.75cm]
+    
+    % Assignment Title
+    {\huge\bfseries \assignmentname{1}[Part 1]}\\[2cm]
+    \vspace*{1.5cm}
+
+    % Student Info
+    \begin{minipage}{0.4\textwidth}
+        \begin{flushleft}
+            Author\\
+            \studentname
+        \end{flushleft}
+    \end{minipage}
+    \hspace{0.1\textwidth}
+    \begin{minipage}{0.4\textwidth}
+        \begin{flushright}
+            Student ID\\
+            \studentnumber
+        \end{flushright}
+    \end{minipage}
+
+    \vspace*{\fill}
+
+    % Statement of Originality
+    \statementoforiginality\\[1cm]
+
+    \today
+    
+    \end{titlepage}
+
+    \newpage
+    \pagenumbering{arabic}
+
+    % Header Setup
+    \setlength{\headheight}{15pt} 
+    \pagestyle{fancy}
+    \fancyhf{}
+    \fancyhead[L]{\subjectinfo{\currentsubject}}
+    \fancyhead[R]{\studentname\ -- \studentnumber}
+    \fancyfoot[C]{\thepage}
+
+    % Begin Content
+
+    Start writing content here.
+
+\end{document}
