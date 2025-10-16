@@ -24,28 +24,23 @@ def read_macro(file_path: Path, macro: str):
     return "UNKNOWN"
 
 def get_subject_code(file_path: Path, key: str):
-    """
-    Returns the subject code corresponding to a subject key.
-    """
     with open(file_path, "r") as f:
         content = f.read()
     
-    # Match all \newsubject{key}{CODE}{Name} occurrences
     matches = re.findall(r"\\newsubject\{(.*?)\}\{(.*?)\}\{(.*?)\}", content)
     for k, code, name in matches:
         if k == key:
             return code
     return "UNKNOWN"
 
-subject_key = read_macro(MAIN, "currentsubject")  # "example"
-subject_code = get_subject_code(UTILITY, subject_key).upper()  # "EX3EX"
-
+subject_key = read_macro(MAIN, "currentsubject")  
+subject_code = get_subject_code(UTILITY, subject_key).upper()  
 
 studentnumber: str = read_macro(UTILITY, "studentnumber")
 currentsubject: str = read_macro(MAIN, "currentsubject").upper()
 assignment: str = read_macro(MAIN, "assignmentname")
 
-jobname = f"{subject_code}_ASSIGNMENT_{assignment}_{studentnumber}"
+jobname = f"{subject_code}_A{assignment}_{studentnumber}"
 cmd = ["pdflatex", "-interaction=nonstopmode", f"-jobname={jobname}", MAIN.name]
 
 subprocess.run(cmd, cwd=MAIN.parent)
